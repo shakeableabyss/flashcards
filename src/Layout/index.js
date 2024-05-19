@@ -8,7 +8,6 @@ import ViewDeck from "./ViewDeck";
 import NewCard from "./NewCard";
 import EditCard from "./EditCard";
 import StudyDeck from "./StudyDeck";
-import NotFound from "./NotFound";
 import { Routes, Route } from "react-router-dom";
 
 function Layout() {
@@ -24,8 +23,13 @@ function Layout() {
       })
   }, []);
 
+  function addDeck(deck) {
+    setDecks(currentDecks => [...currentDecks, deck]);
+  }
+
   if (!loading) {
 
+    
     return (
       <div>
         <Header />
@@ -33,9 +37,9 @@ function Layout() {
         <div className="container">
         
             <Routes>
-              <Route path="*" element={<NotFound />} />
-			  <Route path="/" element={<DeckList decks={decks} />} />
-              <Route path="decks/new" element={<New /> } />
+              <Route path="*" element={<h1>Not Found</h1>} />
+              <Route path="/" element={<DeckList decks={decks} />} />
+              <Route path="decks/new" element={<New addDeck={addDeck} />} />
               <Route path="decks/:deckId" element={<ViewDeck decks={decks} />} />
               <Route path="decks/:deckId/edit" element={<EditDeck decks={decks} />} />
               <Route path="decks/:deckId/study" element={<StudyDeck decks={decks} /> } />
@@ -53,7 +57,7 @@ function Layout() {
         <div>
         <Header />
 		<Routes>
-              <Route path="*" element={<NotFound />} />
+              <Route path="*" element={<h1>Not Found</h1>} />
 			  <Route path="/" element={<h1>Loading Decks...</h1>} />
 		</Routes>
         </div>

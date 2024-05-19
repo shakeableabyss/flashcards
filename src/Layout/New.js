@@ -9,7 +9,7 @@ import {
     useNavigate} from "react-router-dom";
 import { createDeck } from "../utils/api";
 
-function New() {
+function New( {addDeck} ) {
 
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
@@ -18,8 +18,12 @@ function New() {
     const handleSubmit = (event) => {
         event.preventDefault();
         const x = new Date().getTime();
-        createDeck({"id": x, "name": name, "description": description})
-            .then(navigate(`/decks/${x}`));
+        const newDeck = {"id": x, "name": name, "description": description, cards: []};
+        createDeck(newDeck)
+            .then(() => {
+                addDeck(newDeck);
+                navigate(`/decks/${x}`);
+    });
       };
     
     const handleCancel = () => {

@@ -7,16 +7,6 @@ export const CardList = ( {deck} ) => {
     const [loading, setLoading] = useState(true);
     const [cards, setCards] = useState(deck.cards);
     
-    /*useEffect(() => {
-      
-      readDeck(deck.id)
-        .then((data) => {
-          setCards(data.cards);
-          setLoading(false);
-        })
-    }, []);
-	*/
-    
     if (cards.length !== 0) {
         return (
             <div>

@@ -19,25 +19,26 @@ function ViewDeck() {
         
 	readDeck(deckId)
           .then((data) => {
+            console.log("viewdeck", data)
             setDeck(data);
 			setCards(data.cards);
 			setLoading(false);
           })
+          .catch(console.error)
       }, []);
 
     const handleEdit = () => {
-        navigate(`/decks/${deck.id}/edit`);
+        navigate(`/decks/${deckId}/edit`);
     }
     
     const handleStudy = () => {
-        navigate(`/decks/${deck.id}/study`);
+        navigate(`/decks/${deckId}/study`);
     }
     
 	const handleDelete = async () => {
 		if (window.confirm("Delete this Deck? You will not be able to recover it.")) {
-			await deleteDeck(deck.id);
-			navigate("/");
-			window.location.reload();
+			await deleteDeck(deckId)
+            .then(navigate("/"))
 		}
 	}
 

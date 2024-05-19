@@ -9,7 +9,7 @@ function EditDeck( {decks} ) {
     
 	const [deck, setDeck] = useState({})
 	const [name, setName] = useState(deck.name);
-    const [description, setDescription] = useState(deck.description);
+  const [description, setDescription] = useState(deck.description);
 	const [loading, setLoading] = useState(true);
 	const [front, setFront] = useState("");
 	const [back, setBack] = useState("");
